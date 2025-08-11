@@ -45,5 +45,35 @@
     "typescript-eslint": "^8.39.0",
     "vite": "^7.1.0",
     "vitest": "^3.2.4"
+  },
+  "tailwind": {
+    "theme": {
+      "extend": {
+        "keyframes": {
+          "fade-in": {
+            "0%": { "opacity": "0" },
+            "100%": { "opacity": "1" }
+          },
+          "fade-out": {
+            "0%": { "opacity": "1" },
+            "100%": { "opacity": "0" }
+          },
+          "pop-in": {
+            "0%": { "opacity": "0", "transform": "scale(0.95)" },
+            "100%": { "opacity": "1", "transform": "scale(1)" }
+          },
+          "pop-out": {
+            "0%": { "opacity": "1", "transform": "scale(1)" },
+            "100%": { "opacity": "0", "transform": "scale(0.95)" }
+          }
+        },
+        "animation": {
+          "backdrop-in": "fade-in 180ms ease-out forwards",
+          "backdrop-out": "fade-out 160ms ease-in forwards",
+          "dialog-in": "pop-in 220ms cubic-bezier(.16,.84,.3,1) forwards",
+          "dialog-out": "pop-out 160ms ease-in forwards"
+        }
+      }
+    }
   }
 }

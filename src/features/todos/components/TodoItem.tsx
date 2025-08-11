@@ -58,7 +58,7 @@ export const TodoItem: React.FC<Props> = ({ todo, onDelete, onUpdate }) => {
         </div>
       </div>
       <Modal
-        open={open}
+        isOpen={open}
         title='Delete TODO'
         onConfirm={function (): void {
           onDelete(selectedTodoId);
