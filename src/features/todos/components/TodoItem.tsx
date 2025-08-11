@@ -28,9 +28,9 @@ export const TodoItem: React.FC<Props> = ({ todo, onDelete, onUpdate }) => {
 
   return (
     <div ref={setNodeRef} style={style} className="mt-2">
-      <div className="flex items-center justify-between p-2 border border-purple-500 rounded-lg">
-        <div className="flex gap-3 items-center">
-          <span {...attributes} {...listeners} className="cursor-grab">
+      <div className="flex flex-col gap-3 items-center justify-between p-2 border border-purple-500 rounded-lg md:flex-row md:gap-auto">
+        <div className="flex gap-3 items-center w-full md:w-auto">
+          <span {...attributes} {...listeners} className="cursor-grab hidden md:block">
             ⠿
           </span>
           <input
@@ -43,14 +43,14 @@ export const TodoItem: React.FC<Props> = ({ todo, onDelete, onUpdate }) => {
         <div className="flex gap-2">
           <BaseButton
             variant="danger"
-            className="text-sm px-2 py-1 border rounded"
+            className="text-sm px-2 py-1 border rounded flex-1 md:flex-auto"
             onClick={() => deleteHandler(todo.id)}
           >
             Delete
           </BaseButton>
           <BaseButton
             variant="secondary"
-            className="text-sm px-2 py-1 border rounded"
+            className="text-sm px-2 py-1 border rounded flex-1 md:flex-auto"
             onClick={() => onUpdate(todo.id, todo.completed)}
           >
             {todo.completed ? "Undone" : "Done"}
