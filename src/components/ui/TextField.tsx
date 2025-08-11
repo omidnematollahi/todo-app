@@ -1,14 +1,13 @@
 import React, { useMemo } from 'react';
+import { FieldError } from 'react-hook-form';
 
 type TextFieldProps = {
   placeholder: string;
-  value: string;
+  value?: string;
   onChange: (e: any) => void;
-  className: string;
+  className?: string;
   errors?: {
-    [key: string]: {
-      message: string
-    }
+    title?: FieldError
   };
 }
 
@@ -30,17 +29,15 @@ export const TextField: React.FC<TextFieldProps> = (props) => {
         } border text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 `}
         placeholder={props.placeholder}
       />
-      {hasError && props.errors
-        ? Object.keys(props.errors).map((error) => (
-            <p
-              className="mt-2 text-sm text-red-600 dark:text-red-500"
-              key={Math.random() * 6}
-            >
-              <span className="font-medium">
-                {props.errors?.[error]?.message}
-              </span>
-            </p>
-          ))
+      {hasError && props.errors ?
+          <p
+            className="mt-2 text-sm text-red-600 dark:text-red-500"
+            key={Math.random() * 6}
+          >
+            <span className="font-medium">
+              {props.errors?.title?.message}
+            </span>
+          </p>
         : ''}
     </div>
   );

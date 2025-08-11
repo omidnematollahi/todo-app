@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { BaseButton, TextField } from '~components/ui';
 import { useTodos } from '../hooks/useTodos';
@@ -17,6 +17,15 @@ export const TodoForm: React.FC = () => {
   const { addTodoMutation } = useTodos();
   const { mutate: addTodoMutate, isPending } = addTodoMutation;
 
+  const errorList = useMemo(() => {
+    if (errors) {
+      console.log(errors);
+      return {
+        ...errors
+      }
+    }
+  }, [errors])
+
   const onSubmit = (data: TodoFormType) => {
     addTodoMutate(data.title);
     reset();
@@ -27,7 +36,7 @@ export const TodoForm: React.FC = () => {
       <TextField
         {...register('title')}
         placeholder="Add todo"
-        errors={errors}
+        errors={errorList}
       />
       <BaseButton variant="primary" size="md" type="submit" loading={isPending}>
         Add Todo
